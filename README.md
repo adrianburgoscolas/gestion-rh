@@ -1,4 +1,4 @@
-# BB Dofleini S.R.L Frontend technical exercise.
+# Dofleini S.R.L Frontend technical exercise.
 
 ## Table of contents
 
