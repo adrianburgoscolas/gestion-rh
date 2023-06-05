@@ -35,6 +35,7 @@ In order to evaluate not only the skills in the aforementioned area but also oth
 ### Built with
 
 - [React.js](https://react.dev/) - Frontend library
+- [TypeScript1](https://www.typescriptlang.org/) - TypeScript is a strongly typed programming language that builds on JavaScript
 - Semantic HTML5 markup
 - [MuiUI](https://mui.com/) - UI Framework
 
