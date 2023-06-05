@@ -5,13 +5,10 @@
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
-  - [Performance](#perfermance)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Usage](#usage)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
