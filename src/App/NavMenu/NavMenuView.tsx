@@ -33,7 +33,7 @@ const StyledMenu = styled(Menu)({
   marginLeft: '-10px',
 });
 
-const StyledMenuHeadTypo = styled(Typography)({
+const StyledHeadListItemText = styled(ListItemText)({
   '& div':{
     margin: 0,
   },
@@ -44,7 +44,7 @@ const StyledMenuHeadTypo = styled(Typography)({
   opacity: '1',
 });
 
-const StyledMenuItemTypo = styled(Typography)({
+const StyledListItemText = styled(ListItemText)({
   textAlign: 'left',
   font: 'italic normal normal 18px/20px Roboto',
   letterSpacing: '0px',
@@ -52,7 +52,7 @@ const StyledMenuItemTypo = styled(Typography)({
   opacity: '1',
 });
 
-const StyledMenuMailTypo = styled(Typography)({
+const StyledMailListItemText = styled(ListItemText)({
   '& div':{
     margin: 0,
   },
@@ -113,12 +113,8 @@ export default function NavMenuView(
               <Avatar sx={{width: '50px', height: '50px'}} />
             </ListItemIcon>
             <Stack>
-              <StyledMenuHeadTypo>
-                <ListItemText primary='Carlos Diaz'/>
-              </StyledMenuHeadTypo>
-              <StyledMenuMailTypo>
-                <ListItemText primary='carlos@gmail.com'/>
-              </StyledMenuMailTypo>
+              <StyledHeadListItemText primary='Carlos Diaz'/>
+              <StyledMailListItemText primary='carlos@gmail.com'/>
             </Stack>
           </ListItemButton>
         <Divider />
@@ -126,28 +122,20 @@ export default function NavMenuView(
             <ListItemIcon sx={{justifyContent: 'right'}}>
               <AccountCircleRoundedIcon sx={{color: '#4F2D80'}} fontSize='large' />
             </ListItemIcon>
-            <StyledMenuItemTypo>
-              <ListItemText primary='Perfil'/>
-            </StyledMenuItemTypo>
+            <StyledListItemText primary='Perfil'/>
           </ListItemButton>
           <ListItemButton onClick={handleClose} sx={{gap: '10px', marginBottom: '10px'}}>
             <ListItemIcon sx={{justifyContent: 'right'}}>
-              <StyledMenuItemTypo>
-                <SettingsIcon sx={{color: '#4F2D80'}} fontSize='large' />
-              </StyledMenuItemTypo>
+              <SettingsIcon sx={{color: '#4F2D80'}} fontSize='large' />
             </ListItemIcon>
-            <StyledMenuItemTypo>
-              <ListItemText primary='Configuracion'/>
-            </StyledMenuItemTypo>
+            <StyledListItemText primary='Configuracion'/>
           </ListItemButton>
         <Divider />
           <ListItemButton onClick={handleClose} sx={{gap: '10px', marginTop: '10px'}}>
             <ListItemIcon sx={{justifyContent: 'right'}}>
               <LogoutIcon sx={{color: '#4F2D80'}} fontSize='large' />
             </ListItemIcon>
-            <StyledMenuItemTypo>
-              <ListItemText primary='Cerrar Sesion' />
-            </StyledMenuItemTypo>
+            <StyledListItemText primary='Cerrar Sesion' />
           </ListItemButton>
         </MenuList>
       </StyledMenu>

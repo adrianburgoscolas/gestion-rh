@@ -26,7 +26,7 @@ export default function FilesIcon() {
             `} 
             transform="translate(-1.5 -1.1)" 
             fill="currentColor" 
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path 
             id="Path_27050" 
@@ -45,7 +45,7 @@ export default function FilesIcon() {
             `} 
             transform="translate(-1.35 -1.25)" 
             fill="currentColor" 
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
         </g>
       </g>
