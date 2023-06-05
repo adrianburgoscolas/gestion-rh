@@ -83,11 +83,15 @@ export default function DrawerView(
       sx={{
         width: drawerWidth,
         flexShrink: 0,
+        height: '1080px',
+        minHeight: '1080px',
+        overflow: 'scroll',
         '& .MuiDrawer-paper': {
           width: drawerWidth,
-          minHeight: '1080px',
+          minHeight: '100vh',
           padding: '40px 23px',
-          border: 'none'
+          border: 'none',
+          overflow: 'scroll',
         },
       }}
       variant="permanent"
@@ -95,7 +99,7 @@ export default function DrawerView(
     >
       <Image 
         src={Logo} 
-        style={{height: '63px', width: '230px', padding: '0'}} 
+        style={{minHeight: '63px', height: '63px', width: '230px', padding: '0'}} 
         animationDuration={500}
       />
       <StyledMenuTypo sx={{marginTop: '40px', marginBottom: '12px'}}>
