@@ -1,8 +1,12 @@
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import Menu from '@mui/material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,6 +16,10 @@ import TuneIcon from '@mui/icons-material/Tune';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import useDashboard from './useDashboard';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 
 const HeadTypo = styled(Typography)({
@@ -75,7 +83,8 @@ const DefaultStyle = {
 } as React.CSSProperties;
 
 const StyledBox = styled(Box)({
-  '& > *':{
+  height: '33px',
+  '& .MuiButton-root':{
     font: 'normal normal 500 17px/20px Poppins',
     width: '14ch',
     borderRadius: 0,
@@ -85,7 +94,7 @@ const StyledBox = styled(Box)({
     color: 'var(--button-color)',
     backgroundColor: 'white',
   },
-  '& > *:hover': {
+  '& .MuiButton-root:hover': {
     border: 'none',
     borderBottom: 'var(--button-border)',
     color: '#4F2D80',
@@ -104,6 +113,25 @@ const GroupDefaultStyle = {
 } as React.CSSProperties;
 
 export default function DashboardHead() {
+
+  const {
+    open, 
+    handleClose, 
+    handleClick, 
+    anchorEl, 
+    datePickerValue,
+    setDatePickerValue,
+    all,
+    setAll,
+    active,
+    setActive,
+    uncheck,
+    setUncheck,
+    blocked,
+    setBlocked,
+    radioButtonValue,
+    handleRadioButton,
+  } = useDashboard();
   return (
     <Box component='header' sx={{padding: '40px 40px 0 40px',}}>
       <Toolbar style={{paddingLeft: 0}}>
@@ -123,16 +151,82 @@ export default function DashboardHead() {
           </StyledFormControl>
           <StyledButton 
             sx={{width: '240px'}}
-            style={false?ActiveStyle:DefaultStyle} 
+            style={open?ActiveStyle:DefaultStyle} 
             startIcon={<TuneIcon />} 
             endIcon={<KeyboardArrowDownIcon />} 
             size='medium' 
             variant='outlined'
+            onClick={handleClick}
           >
             Fecha de creación
           </StyledButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+            sx={{marginTop: '5px', '& MuiButtonBase-root':{color: '#113986', backgroundColor: '#113986'}}}
+            elevation={20}
+          >
+            <FormControl sx={{marginLeft: '30px'}}>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="hoy"
+                name="radio-buttons-group"
+                onChange={handleRadioButton} 
+                value={radioButtonValue}
+              >
+                <FormControlLabel 
+                  value="hoy" 
+                  control={<Radio />} 
+                  label="Hoy" 
+                />
+                <FormControlLabel 
+                  value="7" 
+                  control={<Radio />} 
+                  label="Últimos 7 días" 
+                />
+                <FormControlLabel 
+                  value="30" 
+                  control={<Radio />} 
+                  label="Últimos 30 días" 
+                />
+                <FormControlLabel 
+                  value="90" control={<Radio />} 
+                  label="Últimos 90 días" 
+                />
+                <FormControlLabel 
+                  value="1y" 
+                  control={<Radio />} 
+                  label="Este año" 
+                />
+                <FormControlLabel 
+                  value="12m" 
+                  control={<Radio />} 
+                  label="Últimos 12 meses" 
+                />
+                <FormControlLabel 
+                  value="range" 
+                  control={<Radio />} 
+                  label="Rango" 
+                />
+              </RadioGroup>
+            </FormControl>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateCalendar  value={datePickerValue} onChange={(newValue) => setDatePickerValue(newValue)} />
+            </LocalizationProvider>
+            <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: '10px'}}>
+              <Button onClick={handleClose} variant="contained" disableElevation>
+              Limpiar
+              </Button>
+            </Box>
+          </Menu>
           <StyledButton
-            style={false?ActiveStyle:DefaultStyle} 
+            style={DefaultStyle} 
             startIcon={<AddIcon />} 
             size='medium' 
             variant='outlined'
@@ -144,16 +238,16 @@ export default function DashboardHead() {
       <Toolbar style={{padding: 0, paddingBottom: '30px', minHeight: '50px'}}>
         <ButtonGroup sx={{gap: '20px'}}>
           <StyledBox>
-          <Button style={true?GroupActiveStyle:GroupDefaultStyle}>Todos</Button>
+            <Button onClick={() => setAll((state: string) => !state)} style={all?GroupActiveStyle:GroupDefaultStyle}>Todos</Button>
           </StyledBox>
           <StyledBox>
-          <Button style={false?GroupActiveStyle:GroupDefaultStyle}>Activos</Button>
+            <Button onClick={() => setActive((state: string) => !state)} style={active?GroupActiveStyle:GroupDefaultStyle}>Activos</Button>
           </StyledBox>
           <StyledBox>
-          <Button style={false?GroupActiveStyle:GroupDefaultStyle}>Sin Verificar</Button>
+            <Button  onClick={() => setUncheck((state: string) => !state)} style={uncheck?GroupActiveStyle:GroupDefaultStyle}>Sin Verificar</Button>
           </StyledBox>
           <StyledBox>
-          <Button style={false?GroupActiveStyle:GroupDefaultStyle}>Bloqueados</Button>
+            <Button  onClick={() => setBlocked((state: string) => !state)}style={blocked?GroupActiveStyle:GroupDefaultStyle}>Bloqueados</Button>
           </StyledBox>
         </ButtonGroup>
       </Toolbar>

@@ -1,7 +1,7 @@
 import DrawerView from './Drawer/DrawerView';
 import useDrawer from './Drawer/useDrawer';
 
-export default function DrawerNav({setnav}:{setnav: Function}) {
+export default function Drawer({setnav}:{setnav: React.Dispatch<React.SetStateAction<string>>}) {
 
   const {selected, setSelected} = useDrawer();
 
@@ -10,4 +10,4 @@ export default function DrawerNav({setnav}:{setnav: Function}) {
       <DrawerView setnav={setnav} selected={selected} setSelected={setSelected} />
     </>
   );
-};
+}

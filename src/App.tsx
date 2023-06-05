@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import  { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
-import DrawerNav from './App/Drawer';
+import Drawer from './App/Drawer';
 import NavMenu from './App/NavMenu';
 import Dashboard from './App/Dashboard';
 import NavBreadcrumbs from './App/NavBreadcrumbs';
@@ -34,7 +34,7 @@ export default function App() {
           </Box>
         </Toolbar>
       </StyledAppBar>
-      <DrawerNav setnav={setNav} />
+      <Drawer setnav={setNav} />
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: '#F3F5F7', p: 3 }}

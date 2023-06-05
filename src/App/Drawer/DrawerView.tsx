@@ -73,9 +73,9 @@ export default function DrawerView(
     selected, 
     setSelected
   }:{
-    setnav: Function, 
+    setnav: React.Dispatch<React.SetStateAction<string>>, 
     selected: number,
-    setSelected: Function
+    setSelected: React.Dispatch<React.SetStateAction<number>>,
   }) {
 
   return (
@@ -111,7 +111,7 @@ export default function DrawerView(
               style={selected === index?ActiveVars:DefaultVars}
               sx={{height: 'inherit', margin: 'inherit'}}
               selected={selected === index} 
-              onClick={_ => {
+              onClick={() => {
                 setnav(text)
                 setSelected(index)
               }} 
@@ -144,7 +144,7 @@ export default function DrawerView(
               style={selected === index + 4?ActiveVars:DefaultVars}
               sx={{height: 'inherit', margin: 'inherit'}}
               selected={selected === index + 4} 
-              onClick={_ => {
+              onClick={() => {
                 setnav(text)
                 setSelected(index + 4)
               }} 

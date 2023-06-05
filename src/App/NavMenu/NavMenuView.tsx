@@ -16,6 +16,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import {MouseEventHandler} from 'react';
+import myAvatar from '../../assets/images/avatar/profile.jpg'
 
 //Styled AppBar menu typo
 const StyledAppBarMenuTypo = styled(Typography)({
@@ -95,7 +96,7 @@ export default function NavMenuView(
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <Avatar sx={{width: '40px', height: '40px'}} />
+        <Avatar  src={myAvatar} sx={{width: '40px', height: '40px'}} />
       </ButtonBase>
       <StyledMenu
         id="basic-menu"
@@ -107,14 +108,14 @@ export default function NavMenuView(
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuList sx={{width: '270px'}}>
+        <MenuList sx={{width: '350px'}}>
           <ListItemButton onClick={handleClose} sx={{gap: '15px', marginBottom: '20px'}}>
             <ListItemIcon sx={{justifyContent: 'right'}}>
-              <Avatar sx={{width: '50px', height: '50px'}} />
+              <Avatar src={myAvatar} sx={{width: '50px', height: '50px'}} />
             </ListItemIcon>
             <Stack>
-              <StyledHeadListItemText primary='Carlos Diaz'/>
-              <StyledMailListItemText primary='carlos@gmail.com'/>
+              <StyledHeadListItemText primary='Adrian Burgos'/>
+              <StyledMailListItemText primary='adrian.burgos.colas@gmail.com'/>
             </Stack>
           </ListItemButton>
         <Divider />

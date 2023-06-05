@@ -1,0 +1,39 @@
+import Checkbox from '@mui/material/Checkbox';
+import { styled } from '@mui/material/styles';
+import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
+import useDashboard from './useDashboard';
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+const columns: GridColDef[] = [
+  { field: (<Checkbox {...label} />), headerName: (<Checkbox {...label} />), minWidth: 100, headerClassName: 'header' },
+  { field: 'firstName', headerName: 'Nombre de usuario', width: 250, headerClassName: 'header' },
+  { field: 'email', headerName: 'Correo electrónico', width: 250, headerClassName: 'header' },
+  { field: 'phone', headerName: 'Teléfono', width: 150, headerClassName: 'header' },
+  { field: 'state', headerName: 'Estado', width: 150, headerClassName: 'header' },
+  { field: company.title, headerName: 'Roles', width: 340, headerClassName: 'header' },
+  { field: 'date', headerName: 'Fecha de creación', width: 200, headerClassName: 'header' },
+  { field: 'acctions', headerName: 'Acciones', width: 146, headerClassName: 'header' },
+];
+
+const StyledDataGrid = styled(DataGrid)({
+  '& .header': {
+    backgroundColor: '#E8E8E8',
+    color: '#2C2E35',
+    font: 'normal normal 500 17px/20px Poppins',
+    letterSpacing: '0',
+    opacity: '0.8',
+    flexGrow: '1',
+  },
+});
+
+export default function DashboardBody() {
+  const { data } = useDashboard();
+
+  return (
+    <Box sx={{flexGrow: '1'}}>
+      <StyledDataGrid rows={data} columns={columns} />
+    </Box>
+  );
+}
