@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
-import Drawer from './App/Drawer';
-import NavMenu from './App/NavMenu';
-import Dashboard from './App/Dashboard';
-import NavBreadcrumbs from './App/NavBreadcrumbs';
+import Drawer from '@/App/Drawer.tsx';
+import NavMenu from '@/App/NavMenu';
+import Dashboard from '@/App/Dashboard';
+import NavBreadcrumbs from '@/App/NavBreadcrumbs';
 
 const drawerWidth = 280;
 

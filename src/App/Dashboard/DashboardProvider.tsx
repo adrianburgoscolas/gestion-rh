@@ -59,17 +59,15 @@ export default function DashboardProvider({children}:{children: React.ReactNode}
         handleClose,
         datePickerValue,
         setDatePickerValue,
-        all,
-        active,
-        uncheck,
-        blocked,
-        setAll,
-        setActive,
-        setUncheck,
-        setBlocked,
         radioButtonValue,
         setRadioButtonValue,
-        handleRadioButton
+        handleRadioButton,
+        buttonList: [
+          {state: all, setter: setAll, text: 'Todos'}, 
+          {state: active, setter: setActive, text: 'Activo'}, 
+          {state: uncheck, setter: setUncheck, text: 'Verificado'}, 
+          {state: blocked, setter: setBlocked, text: 'Bloqueado'}
+        ]
       }}>
       {children}
     </DashboardContext.Provider>

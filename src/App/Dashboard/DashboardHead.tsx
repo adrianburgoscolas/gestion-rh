@@ -16,11 +16,11 @@ import TuneIcon from '@mui/icons-material/Tune';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import useDashboard from './useDashboard';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
+import useDashboard from '@/App/Dashboard/useDashboard';
 
 const HeadTypo = styled(Typography)({
   textAlign: 'left',
@@ -121,17 +121,11 @@ export default function DashboardHead() {
     anchorEl, 
     datePickerValue,
     setDatePickerValue,
-    all,
-    setAll,
-    active,
-    setActive,
-    uncheck,
-    setUncheck,
-    blocked,
-    setBlocked,
+    buttonList,
     radioButtonValue,
     handleRadioButton,
   } = useDashboard();
+
   return (
     <Box component='header' sx={{padding: '40px 40px 0 40px',}}>
       <Toolbar style={{paddingLeft: 0}}>
@@ -180,49 +174,27 @@ export default function DashboardHead() {
                 onChange={handleRadioButton} 
                 value={radioButtonValue}
               >
-                <FormControlLabel 
-                  value="hoy" 
-                  control={<Radio />} 
-                  label="Hoy" 
-                />
-                <FormControlLabel 
-                  value="7" 
-                  control={<Radio />} 
-                  label="Últimos 7 días" 
-                />
-                <FormControlLabel 
-                  value="30" 
-                  control={<Radio />} 
-                  label="Últimos 30 días" 
-                />
-                <FormControlLabel 
-                  value="90" control={<Radio />} 
-                  label="Últimos 90 días" 
-                />
-                <FormControlLabel 
-                  value="1y" 
-                  control={<Radio />} 
-                  label="Este año" 
-                />
-                <FormControlLabel 
-                  value="12m" 
-                  control={<Radio />} 
-                  label="Últimos 12 meses" 
-                />
-                <FormControlLabel 
-                  value="range" 
-                  control={<Radio />} 
-                  label="Rango" 
-                />
+                {
+                  ['Hoy', 'Últimos 7 días', 'Últimos 30 días', 'Últimos 90 días', 'Últimos 12 meses', 'Rango']
+                  .map((text: string, i: number) => 
+                       (
+                         <FormControlLabel 
+                          key={i} 
+                          value={text.split(' ').join('_').toLowerCase()} 
+                          control={<Radio />} 
+                          label={text} 
+                          />
+                       )
+                      )
+                }
               </RadioGroup>
             </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateCalendar  value={datePickerValue} onChange={(newValue) => setDatePickerValue(newValue)} />
             </LocalizationProvider>
             <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: '10px'}}>
-              <Button onClick={handleClose} variant="contained" disableElevation>
-              Limpiar
-              </Button>
+              <Button onClick={handleClose} variant="contained" disableElevation
+              >Limpiar</Button>
             </Box>
           </Menu>
           <StyledButton
@@ -230,25 +202,22 @@ export default function DashboardHead() {
             startIcon={<AddIcon />} 
             size='medium' 
             variant='outlined'
-          >
-            Adicionar
-          </StyledButton>
+          >Adicionar</StyledButton>
           </Box>
       </Toolbar>
       <Toolbar style={{padding: 0, paddingBottom: '30px', minHeight: '50px'}}>
         <ButtonGroup sx={{gap: '20px'}}>
-          <StyledBox>
-            <Button onClick={() => setAll((state: string) => !state)} style={all?GroupActiveStyle:GroupDefaultStyle}>Todos</Button>
-          </StyledBox>
-          <StyledBox>
-            <Button onClick={() => setActive((state: string) => !state)} style={active?GroupActiveStyle:GroupDefaultStyle}>Activos</Button>
-          </StyledBox>
-          <StyledBox>
-            <Button  onClick={() => setUncheck((state: string) => !state)} style={uncheck?GroupActiveStyle:GroupDefaultStyle}>Sin Verificar</Button>
-          </StyledBox>
-          <StyledBox>
-            <Button  onClick={() => setBlocked((state: string) => !state)}style={blocked?GroupActiveStyle:GroupDefaultStyle}>Bloqueados</Button>
-          </StyledBox>
+          {
+            buttonList
+            .map((obj:{text:string, state:boolean, setter: React.Dispatch<React.SetStateAction<boolean>>}, i: number) =>(
+              <StyledBox key={i}>
+                <Button 
+                  onClick={() => obj.setter((state: boolean) => !state)} 
+                  style={obj.state?GroupActiveStyle:GroupDefaultStyle}
+                >{obj.text}</Button>
+              </StyledBox>
+            ))
+          }
         </ButtonGroup>
       </Toolbar>
     </Box>

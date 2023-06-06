@@ -5,9 +5,10 @@ import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import useDashboard from './useDashboard';
 import {Avatar, Typography} from '@mui/material';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+
+import useDashboard from '@/App/Dashboard/useDashboard';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
