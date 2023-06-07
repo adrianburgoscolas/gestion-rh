@@ -27,7 +27,7 @@ export default function App() {
   return (
     <Box sx={{ display: 'flex', minWidth: '810px', minHeight: '1080px' }}>
       <StyledAppBar>
-        <Toolbar>
+        <Toolbar sx={{minWidth: '530px'}}>
           <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexGrow: '1'}}>
             <NavBreadcrumbs path={['Inicio', 'Administracion']} nav={nav} />
             <NavMenu />
